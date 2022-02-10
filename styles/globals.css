@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
 }
 
 * {
@@ -25,6 +25,26 @@ code {
   font-family: Menlo, Monaco, Lucida Console, Courier New, monospace;
 }
 
+.title_header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 850px;
+  flex-shrink: 0;
+}
+
+.title{
+  color: white;
+  font-size: 40px;
+  padding-top: 56px;
+}
+
+.title_big{
+  color: white;
+  font-size: 120px;
+}
+
 .container {
   height: 100vh;
   display: flex;
@@ -37,8 +57,41 @@ code {
   -moz-animation: gradient 60s ease infinite;
   animation: gradient 60s ease infinite;
   background-size: 400% 400%;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
+.container_row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+  overflow-x: hidden;
+}
+
+.mod_container{
+  width: 40%;
+  height: 200px;
+  border-radius: 2px;
+  border: 1px solid slateblue;
+  margin-right: 20px;
+}
+
+.left_entrance{
+  animation: slideInLeft;
+  animation-duration: 2s;
+}
+
+.right_entrance{
+  animation: slideInRight;
+  animation-duration: 2s;
+}
+
+.scroll_body{
+  width: 100%;
+  overflow-y: auto;
+}
 
 @keyframes gradient {
 	0% {
