@@ -320,7 +320,12 @@ export default function Home() {
     <Box minH="100vh" bgGradient="linear(120deg, #1a1b1e 0%, #23243a 100%)">
       <Head>
         <title>Buuz135's Minecraft Mods</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Buuz135" />
+<link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       {/* Hero Section */}
