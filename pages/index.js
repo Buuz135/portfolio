@@ -22,9 +22,10 @@ export async function getStaticProps() {
       categories: [] // Categories not available in list, can be fetched per mod if needed
     });
   }
+  console.log(mods);
   return {
     props: { mods },
-    revalidate: 1 // 24 hours
+    revalidate: 86400 // 24 hours
   };
 }
 
