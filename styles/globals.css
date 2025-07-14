@@ -2,90 +2,19 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  overflow-x: hidden;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+  background: #1a1b1e;
+  color: white;
 }
 
 * {
   box-sizing: border-box;
 }
 
-main {
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-code {
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-family: Menlo, Monaco, Lucida Console, Courier New, monospace;
-}
-
-.title_header{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 850px;
-  flex-shrink: 0;
-}
-
-.title{
-  color: white;
-  font-size: 40px;
-  padding-top: 56px;
-}
-
-.title_big{
-  color: white;
-  font-size: 120px;
-}
-
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: rgb(26,117,255);
-  background: linear-gradient(120deg, rgba(26,117,255,1) 0%, rgba(106,93,248,1) 50%, rgba(201,87,230,1) 100%); 
-  -webkit-animation: gradient 60s ease infinite;
-  -moz-animation: gradient 60s ease infinite;
-  animation: gradient 60s ease infinite;
-  background-size: 400% 400%;
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-
-.container_row{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 20px;
-  overflow-x: hidden;
-}
-
-.mod_container{
-  width: 40%;
-  height: 200px;
-  border-radius: 2px;
-  border: 1px solid slateblue;
-  margin-right: 20px;
-}
-
-.left_entrance{
-  animation: slideInLeft;
-  animation-duration: 2s;
-}
-
-.right_entrance{
-  animation: slideInRight;
-  animation-duration: 2s;
+::selection {
+  background: rgba(147, 51, 234, 0.3);
 }
 
 .scroll_body{

@@ -1,63 +1,83 @@
 import Head from 'next/head'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
-import 'animate.css';
-import { useInView } from "react-intersection-observer";
+import { Box, Container, Grid, Heading, Text, VStack } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
+import ModCard from '../components/ModCard'
 
-var mods = ["Industrial Foregoing", "Industrial Foregoing", "Industrial Foregoing", "Industrial Foregoing", "Portality"]
+const MotionBox = motion(Box)
 
-
-export default function Home() {
-  
-  var objectMods = []
-  for (let index = 0; index < Math.ceil(mods.length / 2.0); index++) {
-    const element = createMod(mods[index * 2], "left_entrance");
-    if (index * 2 + 1 < mods.length) {
-      objectMods.push(<div className='container_row'>
-        {element}{createMod(mods[index * 2 + 1], "right_entrance")}
-      </div>)
-    } else {
-      objectMods.push(<div className='container_row'>
-      {element}
-    </div>)
-    }
+export async function getStaticProps() {
+  const res = await fetch('https://www.curseforge.com/members/buuz135/projects?page=1&pageSize=100&sortBy=TotalDownloads&sortOrder=Desc');
+  const html = await res.text();
+  // Parse the HTML to extract mod info with the owner tag
+  const modRegex = /<a href=\"(\/minecraft\/mc-mods\/[^\"]+)\"[^>]*>\s*<img[^>]+src=\"([^\"]+)\"[^>]*>[^<]*<\/a>\s*<div[^>]*>\s*<a[^>]*>([^<]+)<\/a>.*?Downloads([\d.,]+)M.*?By\s*<a[^>]*>Buuz135<\/a>.*?<div[^>]*class=\"project-avatar.*?Owner/gs;
+  const mods = [];
+  let match;
+  while ((match = modRegex.exec(html)) !== null) {
+    mods.push({
+      url: 'https://www.curseforge.com' + match[1],
+      image: match[2],
+      name: match[3].trim(),
+      downloads: Math.round(parseFloat(match[4].replace(/,/g, '')) * 1_000_000),
+      description: '', // Description not available in list, can be fetched per mod if needed
+      categories: [] // Categories not available in list, can be fetched per mod if needed
+    });
   }
+  return {
+    props: { mods },
+    revalidate: 86400 // 24 hours
+  };
+}
+
+export default function Home({ mods }) {
   return (
-    <div className="container">
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet" />
+    <Box minH="100vh" bg="#1a1b1e">
       <Head>
-        <title>Next.js Starter!</title>
+        <title>Buuz135's Minecraft Mods</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className='scroll_body'>
-        <Header></Header>
-        {objectMods}
-      </div>
-    </div>
+
+      <Container maxW="container.xl" py={10}>
+        <VStack spacing={10} align="stretch">
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <VStack spacing={4} textAlign="center" mb={10}>
+              <Heading as="h1" size="2xl" bgGradient="linear(to-r, purple.400, pink.400)" bgClip="text">
+                Buuz135's Minecraft Mods
+              </Heading>
+              <Text color="gray.400" fontSize="xl">
+                Creating innovative solutions for automation and storage
+              </Text>
+            </VStack>
+          </MotionBox>
+
+          <Grid
+            templateColumns={{
+              base: "1fr",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
+              lg: "repeat(4, 1fr)"
+            }}
+            gap={6}
+            justifyContent="center"
+          >
+            {mods.map((mod, index) => (
+              <MotionBox
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                display="flex"
+                justifyContent="center"
+              >
+                <ModCard mod={mod} />
+              </MotionBox>
+            ))}
+          </Grid>
+        </VStack>
+      </Container>
+    </Box>
   )
 }
-
-function createMod(modName, entranceAnimation) {
-  const [titleRef, titleInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.01
-  });
-  var element = (<div ref={titleRef} className={'mod_container ' + (titleInView ? 'animate__animated ' + entranceAnimation : '')}>
-    {modName}
-  </div>)
-  return element
-}
-
-
-/*
-<main>
-        <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-      </main>
-
-      <Footer />
-      */
