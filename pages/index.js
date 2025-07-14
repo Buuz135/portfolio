@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Box, Container, Grid, Heading, Text, VStack, HStack, Avatar, Link, IconButton } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
-import { FaGithub, FaTwitter, FaDiscord, FaPaypal, FaHeart } from 'react-icons/fa'
+import { FaGithub, FaTwitter, FaDiscord, FaDownload } from 'react-icons/fa'
 import { SiPatreon, SiKofi } from 'react-icons/si'
 import ModCard from '../components/ModCard'
 
@@ -14,6 +14,7 @@ const HERO_BG = 'linear-gradient(120deg, #6a5af9 0%, #c957e6 100%)';
 Add all of the mod information from my profile that has the owner tag*/
 
 const mods = [
+
   {
     name: "Industrial Foregoing",
     description: "A collection of machines to make your minecraft builds easier to automate.",
@@ -311,6 +312,8 @@ const mods = [
     categories: ["Utility & QoL", "Cosmetic"]
   }
 ];
+// Calculate total downloads
+const totalDownloads = mods.reduce((sum, mod) => sum + mod.downloads, 0);
 
 export default function Home() {
   return (
@@ -339,6 +342,12 @@ export default function Home() {
             <Heading as="h1" size="2xl" fontWeight="extrabold" letterSpacing="tight">
               Buuz135
             </Heading>
+            <HStack spacing={2} align="center">
+              <Box as="span" fontSize="2xl" fontWeight="bold" color="white" display="flex" alignItems="center">
+                <FaDownload style={{ marginRight: 8 }} />
+                {totalDownloads.toLocaleString()} total downloads
+              </Box>
+            </HStack>
             <Text fontSize="xl" color="whiteAlpha.900" textAlign="center" maxW="2xl">
               Minecraft Mod Developer | Automation, Storage, and Quality of Life Mods
             </Text>
