@@ -5,7 +5,8 @@ body {
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif;
-  background: #1a1b1e;
+  background: linear-gradient(120deg, #23243a, #1a1b1e, #6a5af9, #c957e6, #23243a);
+
   color: white;
 }
 

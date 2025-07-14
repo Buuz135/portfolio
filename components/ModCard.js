@@ -1,11 +1,11 @@
-import { Box, Image, Text, Link, VStack, HStack, Badge } from '@chakra-ui/react';
+import { Box, Image, Text, Link, VStack, HStack, Badge, Button } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { FaDownload } from 'react-icons/fa';
+import { FaDownload, FaExternalLinkAlt } from 'react-icons/fa';
 
 const MotionBox = motion(Box);
 
 const CARD_SIZE = '300px'; // Square image size
-const CARD_HEIGHT = '460px'; // Fixed card height for uniformity
+const CARD_HEIGHT = '520px'; // Fixed card height for uniformity
 
 function formatDownloads(downloads) {
   if (downloads >= 1_000_000_000) {
@@ -59,11 +59,9 @@ const ModCard = ({ mod }) => {
       </Box>
       <Box p={4} width="100%" display="flex" flexDirection="column" flexGrow={1} minHeight="0">
         <VStack align="stretch" spacing={2} flexGrow={1} minHeight={0}>
-          <Link href={mod.url} isExternal>
-            <Text fontSize="lg" fontWeight="bold" color="white" noOfLines={1}>
-              {mod.name}
-            </Text>
-          </Link>
+          <Text fontSize="lg" fontWeight="bold" color="white" noOfLines={1}>
+            {mod.name}
+          </Text>
           <Text color="gray.200" fontSize="sm" noOfLines={2} flexGrow={1}>
             {mod.description}
           </Text>
@@ -75,6 +73,20 @@ const ModCard = ({ mod }) => {
             ))}
           </HStack>
         </VStack>
+        <Button
+          as={Link}
+          href={mod.url}
+          isExternal
+          leftIcon={<FaExternalLinkAlt />}
+          colorScheme="purple"
+          variant="solid"
+          mt={4}
+          width="100%"
+          fontWeight="bold"
+          _hover={{ textDecoration: 'none', bg: 'purple.600' }}
+        >
+          View Mod
+        </Button>
       </Box>
     </MotionBox>
   );
