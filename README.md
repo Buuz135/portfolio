@@ -12,6 +12,14 @@ This project is a very minimal starter that includes 2 sample components, a glob
 
 ## Getting Started
 
+Create `.env.local` from `.env.example` and set a CurseForge API key:
+
+```text
+CURSEFORGE_API_KEY=your_key_here
+```
+
+Set the same server-side environment variable in Netlify before deploying. CurseForge issues API keys through its developer console.
+
 First, run the development server:
 
 ```bash

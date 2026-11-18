@@ -15,7 +15,7 @@ function formatDownloads(downloads) {
   } else if (downloads >= 1_000) {
     return (downloads / 1_000).toFixed(downloads < 10_000 ? 2 : 1).replace(/\.0+$/, '') + 'K';
   } else {
-    return downloads.toLocaleString();
+    return downloads.toLocaleString('en-US');
   }
 }
 
