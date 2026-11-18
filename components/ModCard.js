@@ -66,6 +66,11 @@ const ModCard = ({ mod }) => {
             {mod.description}
           </Text>
           <HStack spacing={2} flexWrap="wrap">
+            {mod.isOwner && (
+              <Badge colorScheme="green" fontSize="0.7em">
+                Owner
+              </Badge>
+            )}
             {mod.categories.map((category, index) => (
               <Badge key={index} colorScheme="purple" fontSize="0.7em">
                 {category}
